@@ -1,0 +1,25 @@
+name: "📺 Nova série"
+description: Adicionar uma série na seção Novidades do site
+title: "[Série] "
+labels: ["nova-serie"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Digite o nome exatamente como aparece no TMDB. Se houver mais de uma série
+        com esse nome, inclua o ano de estreia entre parênteses, ex.: `Loki (2021)`.
+  - type: input
+    id: nome
+    attributes:
+      label: Nome da série
+      placeholder: "Loki (2021)"
+    validations:
+      required: true
+  - type: input
+    id: temporada
+    attributes:
+      label: Número da temporada
+      description: Qual temporada você está postando
+      placeholder: "1"
+    validations:
+      required: true
