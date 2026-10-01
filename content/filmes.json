@@ -1,1 +1,9 @@
-
+{
+  "itens": [
+    {
+      "capa": "/assets/capas/exemplo-filme.jpg",
+      "nome": "Filme de exemplo (apague este item)",
+      "sinopse": "Este é um item de exemplo para mostrar o formato. Edite ou apague-o em /admin, na coleção Novidades → Filmes."
+    }
+  ]
+}
