@@ -1,0 +1,112 @@
+name: Processar novidade (filme/série)
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  processar:
+    # só processa issues abertas pelo dono do repositório, com um dos dois labels
+    if: |
+      github.event.issue.user.login == github.repository_owner &&
+      (contains(github.event.issue.labels.*.name, 'novo-filme') || contains(github.event.issue.labels.*.name, 'nova-serie'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Buscar no TMDB e atualizar content/*.json
+        uses: actions/github-script@v7
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        with:
+          script: |
+            const fs = require('fs');
+            const body = context.payload.issue.body || '';
+            const labels = context.payload.issue.labels.map(l => l.name);
+            const ehSerie = labels.includes('nova-serie');
+
+            function campo(label) {
+              const re = new RegExp('### ' + label + '\\s*\\n\\n(.+)');
+              const m = body.match(re);
+              return m ? m[1].trim() : '';
+            }
+
+            async function comentar(msg) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: msg,
+              });
+            }
+
+            const brutoNome = campo(ehSerie ? 'Nome da série' : 'Nome do filme');
+            if (!brutoNome) {
+              await comentar('Não consegui ler o nome enviado. Edite o título/descrição da issue e abra uma nova.');
+              return;
+            }
+
+            const anoMatch = brutoNome.match(/\((\d{4})\)\s*$/);
+            const ano = anoMatch ? anoMatch[1] : null;
+            const termoBusca = anoMatch ? brutoNome.slice(0, anoMatch.index).trim() : brutoNome;
+
+            const tipo = ehSerie ? 'tv' : 'movie';
+            let buscaUrl = `https://api.themoviedb.org/3/search/${tipo}?api_key=${process.env.TMDB_API_KEY}&language=pt-BR&query=${encodeURIComponent(termoBusca)}`;
+            if (ano) buscaUrl += ehSerie ? `&first_air_date_year=${ano}` : `&primary_release_year=${ano}`;
+
+            const buscaRes = await fetch(buscaUrl);
+            if (!buscaRes.ok) {
+              await comentar('Falha ao consultar o TMDB. Confira se o secret TMDB_API_KEY está configurado corretamente.');
+              return;
+            }
+            const busca = await buscaRes.json();
+            const resultado = (busca.results || [])[0];
+
+            if (!resultado) {
+              await comentar(`Não encontrei "${brutoNome}" no TMDB. Tente de novo incluindo o ano, ex.: "${termoBusca} (2021)".`);
+              return;
+            }
+
+            const capa = resultado.poster_path ? `https://image.tmdb.org/t/p/w500${resultado.poster_path}` : '';
+            const nomeFinal = ehSerie ? resultado.name : resultado.title;
+
+            let entrada, arquivo;
+            if (ehSerie) {
+              const temporadaNum = parseInt(campo('Número da temporada'), 10) || 1;
+              const detalhesRes = await fetch(`https://api.themoviedb.org/3/tv/${resultado.id}?api_key=${process.env.TMDB_API_KEY}&language=pt-BR`);
+              const detalhes = await detalhesRes.json();
+              const temp = (detalhes.seasons || []).find((s) => s.season_number === temporadaNum);
+              if (!temp) {
+                await comentar(`Encontrei "${nomeFinal}" no TMDB, mas não achei a temporada ${temporadaNum}. Confira o número e tente de novo.`);
+                return;
+              }
+              entrada = { capa, nome: nomeFinal, temporada: `${temporadaNum}ª Temporada`, episodios: temp.episode_count };
+              arquivo = 'content/series.json';
+            } else {
+              entrada = { capa, nome: nomeFinal, sinopse: resultado.overview || '' };
+              arquivo = 'content/filmes.json';
+            }
+
+            const dados = JSON.parse(fs.readFileSync(arquivo, 'utf8'));
+            dados.itens.push(entrada);
+            fs.writeFileSync(arquivo, JSON.stringify(dados, null, 2) + '\n');
+
+            await comentar(`✅ Adicionado **${nomeFinal}** em \`${arquivo}\`. Deve aparecer no site em 1-2 minutos.\n\n![capa](${capa})`);
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed',
+            });
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/*.json
+          git diff --cached --quiet || git commit -m "Novidade via issue #${{ github.event.issue.number }}"
+          git push
