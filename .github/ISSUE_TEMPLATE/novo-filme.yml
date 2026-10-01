@@ -1,0 +1,17 @@
+name: "🎬 Novo filme"
+description: Adicionar um filme na seção Novidades do site
+title: "[Filme] "
+labels: ["novo-filme"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Digite o nome exatamente como aparece no TMDB. Se houver mais de um filme
+        com esse nome, inclua o ano entre parênteses, ex.: `Duna (2021)`.
+  - type: input
+    id: nome
+    attributes:
+      label: Nome do filme
+      placeholder: "Duna (2021)"
+    validations:
+      required: true
