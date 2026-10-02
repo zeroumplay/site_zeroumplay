@@ -306,9 +306,25 @@
     }
     .novidades-tab i { margin-right: 8px; }
     .novidades-tab[aria-selected="true"] { color: #05060a; background: var(--cyan); border-color: var(--cyan); }
-    .novidades-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr)); gap: 1.1rem; }
-    .novidades-grid[hidden] { display: none; }
+    .novidades-row { position: relative; }
+    .novidades-row[hidden] { display: none; }
+    .novidades-grid {
+      display: flex;
+      gap: 1.1rem;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scroll-padding-left: 2px;
+      padding: .25rem .125rem .9rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cyan) rgba(255,255,255,.06);
+    }
+    .novidades-grid::-webkit-scrollbar { height: 6px; }
+    .novidades-grid::-webkit-scrollbar-track { background: rgba(255,255,255,.06); border-radius: 999px; }
+    .novidades-grid::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 999px; }
     .novidade-card {
+      flex: 0 0 auto;
+      width: clamp(9.5rem, 24vw, 13.75rem);
+      scroll-snap-align: start;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: linear-gradient(145deg,rgba(20,22,34,.82),rgba(8,9,14,.75));
@@ -318,6 +334,28 @@
       display: flex;
       flex-direction: column;
     }
+    .novidades-seta {
+      position: absolute;
+      top: 40%;
+      translate: 0 -50%;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: 1px solid rgba(0,234,255,.4);
+      background: rgba(5,6,10,.85);
+      color: var(--cyan);
+      font-size: 1.3rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 2;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .novidades-seta.esquerda { left: -.5rem; }
+    .novidades-seta.direita { right: -.5rem; }
+    .novidades-seta:disabled { opacity: .25; cursor: default; }
+    @media (max-width: 620px) { .novidades-seta { display: none; } }
     .novidade-capa { aspect-ratio: 2 / 3; background: #10131d; overflow: hidden; }
     .novidade-capa img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .novidade-badge {
@@ -338,7 +376,7 @@
     .novidades-vazio { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 1.9rem 0; }
 
     @media (max-width: 620px) {
-      .novidades-grid { grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr)); gap: .75rem; }
+      .novidades-grid { gap: .75rem; }
       .novidade-info { padding: .75rem; }
     }
 
@@ -748,11 +786,19 @@
           </button>
         </div>
 
-        <div class="novidades-grid" id="gradeFilmes" role="tabpanel" aria-labelledby="tabFilmes">
-          <p class="novidades-vazio">Carregando novidades…</p>
+        <div class="novidades-row" id="linhaFilmes" role="tabpanel" aria-labelledby="tabFilmes">
+          <button class="novidades-seta esquerda" type="button" aria-label="Filmes anteriores" data-alvo="gradeFilmes">‹</button>
+          <div class="novidades-grid" id="gradeFilmes">
+            <p class="novidades-vazio">Carregando novidades…</p>
+          </div>
+          <button class="novidades-seta direita" type="button" aria-label="Próximos filmes" data-alvo="gradeFilmes">›</button>
         </div>
-        <div class="novidades-grid" id="gradeSeries" role="tabpanel" aria-labelledby="tabSeries" hidden>
-          <p class="novidades-vazio">Carregando novidades…</p>
+        <div class="novidades-row" id="linhaSeries" role="tabpanel" aria-labelledby="tabSeries" hidden>
+          <button class="novidades-seta esquerda" type="button" aria-label="Séries anteriores" data-alvo="gradeSeries">‹</button>
+          <div class="novidades-grid" id="gradeSeries">
+            <p class="novidades-vazio">Carregando novidades…</p>
+          </div>
+          <button class="novidades-seta direita" type="button" aria-label="Próximas séries" data-alvo="gradeSeries">›</button>
         </div>
       </div>
     </section>
@@ -947,17 +993,25 @@
 
     const tabFilmes = document.getElementById('tabFilmes');
     const tabSeries = document.getElementById('tabSeries');
-    const gradeFilmesEl = document.getElementById('gradeFilmes');
-    const gradeSeriesEl = document.getElementById('gradeSeries');
+    const linhaFilmesEl = document.getElementById('linhaFilmes');
+    const linhaSeriesEl = document.getElementById('linhaSeries');
     const mostrarAbaNovidades = (aba) => {
       const ehFilmes = aba === 'filmes';
       tabFilmes.setAttribute('aria-selected', ehFilmes);
       tabSeries.setAttribute('aria-selected', !ehFilmes);
-      gradeFilmesEl.hidden = !ehFilmes;
-      gradeSeriesEl.hidden = ehFilmes;
+      linhaFilmesEl.hidden = !ehFilmes;
+      linhaSeriesEl.hidden = ehFilmes;
     };
     tabFilmes.addEventListener('click', () => mostrarAbaNovidades('filmes'));
     tabSeries.addEventListener('click', () => mostrarAbaNovidades('series'));
+
+    document.querySelectorAll('.novidades-seta').forEach((botao) => {
+      botao.addEventListener('click', () => {
+        const grade = document.getElementById(botao.dataset.alvo);
+        const direcao = botao.classList.contains('direita') ? 1 : -1;
+        grade.scrollBy({ left: direcao * grade.clientWidth * 0.8, behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 </html>
