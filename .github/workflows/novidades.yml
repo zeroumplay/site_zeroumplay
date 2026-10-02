@@ -2,7 +2,7 @@ name: Processar novidade (filme/série)
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 permissions:
   contents: write
@@ -10,10 +10,12 @@ permissions:
 
 jobs:
   processar:
-    # só processa issues abertas pelo dono do repositório, com um dos dois labels
+    # só processa issues abertas pelo dono do repositório, com título do formulário certo
+    # (não usamos label aqui: o GitHub só aplica uma label automaticamente se ela já
+    # existir no repositório, então depender de label é frágil)
     if: |
       github.event.issue.user.login == github.repository_owner &&
-      (contains(github.event.issue.labels.*.name, 'novo-filme') || contains(github.event.issue.labels.*.name, 'nova-serie'))
+      (startsWith(github.event.issue.title, '[Filme]') || startsWith(github.event.issue.title, '[Série]'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +28,8 @@ jobs:
           script: |
             const fs = require('fs');
             const body = context.payload.issue.body || '';
-            const labels = context.payload.issue.labels.map(l => l.name);
-            const ehSerie = labels.includes('nova-serie');
+            const titulo = context.payload.issue.title || '';
+            const ehSerie = titulo.startsWith('[Série]');
 
             function campo(label) {
               const re = new RegExp('### ' + label + '\\s*\\n\\n(.+)');
