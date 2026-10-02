@@ -35,6 +35,12 @@
       "nome": "O Mentalista",
       "temporada": "1ª Temporada",
       "episodios": 23
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/oQkXyLAYO5YWyU6gA99TynguYwL.jpg",
+      "nome": "Lanternas",
+      "temporada": "1ª Temporada",
+      "episodios": 8
     }
   ]
 }
