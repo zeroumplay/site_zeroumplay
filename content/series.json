@@ -29,6 +29,12 @@
       "nome": "Reacher",
       "temporada": "1ª Temporada",
       "episodios": 8
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/bJ0SNoD0DchXo5nH3N81ABIe3H.jpg",
+      "nome": "O Mentalista",
+      "temporada": "1ª Temporada",
+      "episodios": 23
     }
   ]
 }
