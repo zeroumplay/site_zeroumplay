@@ -5,6 +5,12 @@
       "nome": "Grey's Anatomy",
       "temporada": "1ª Temporada",
       "episodios": 9
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/hGwm9Cj3CdbJIqQWNExQqiYmCd4.jpg",
+      "nome": "Breaking Bad",
+      "temporada": "1ª Temporada",
+      "episodios": 7
     }
   ]
 }
