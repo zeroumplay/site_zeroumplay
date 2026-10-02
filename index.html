@@ -413,6 +413,15 @@
       color: rgba(255,255,255,.92);
       text-shadow: 0 0 22px var(--cyan);
     }
+    .screen.tem-video::before,
+    .screen.tem-video::after { content: none; }
+    .screen-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .screen::after {
       content: "";
       position: absolute;
@@ -807,7 +816,11 @@
       <div class="container">
         <div class="devices">
           <div class="device-art">
-            <div class="screen"></div>
+            <div class="screen tem-video">
+              <video class="screen-video" autoplay muted loop playsinline poster="assets/video/poster.jpg">
+                <source src="assets/video/promo.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
 
           <div>
