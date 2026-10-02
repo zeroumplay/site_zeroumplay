@@ -1,10 +1,5 @@
 {
-  "itens": [
-    {
-      "capa": "/assets/capas/exemplo-filme.jpg",
-      "nome": "Filme de exemplo (apague este item)",
-      "sinopse": "Este é um item de exemplo para mostrar o formato. Edite ou apague-o em /admin, na coleção Novidades → Filmes."
-    },
+  "itens": [    
     {
       "capa": "https://image.tmdb.org/t/p/w500/jTN1hdfP88Km63waezqIN1uUqT3.jpg",
       "nome": "Toy Story 5",
