@@ -23,6 +23,12 @@
       "nome": "Rancho Dutton",
       "temporada": "1ª Temporada",
       "episodios": 9
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/f1VCQIG2iCyOookdgOzwtUpwWC0.jpg",
+      "nome": "Reacher",
+      "temporada": "1ª Temporada",
+      "episodios": 8
     }
   ]
 }
