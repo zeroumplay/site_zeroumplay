@@ -17,6 +17,12 @@
       "nome": "Chernobyl",
       "temporada": "1ª Temporada",
       "episodios": 5
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/aJVroxZZKReiSlASpODQ23qrdGa.jpg",
+      "nome": "Rancho Dutton",
+      "temporada": "1ª Temporada",
+      "episodios": 9
     }
   ]
 }
