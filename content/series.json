@@ -5,6 +5,12 @@
       "nome": "Série de exemplo (apague este item)",
       "temporada": "1ª Temporada",
       "episodios": 10
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/vrChGRs0DsoCoaeHif8PlZY637Q.jpg",
+      "nome": "Grey's Anatomy",
+      "temporada": "1ª Temporada",
+      "episodios": 9
     }
   ]
 }
