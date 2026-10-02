@@ -11,6 +11,12 @@
       "nome": "Breaking Bad",
       "temporada": "1ª Temporada",
       "episodios": 7
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg",
+      "nome": "Chernobyl",
+      "temporada": "1ª Temporada",
+      "episodios": 5
     }
   ]
 }
