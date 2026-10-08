@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07080d">
+  <meta name="description" content="Zero Um Play — guias de instalação e download por dispositivo.">
+  <title>Downloads | Zero Um Play</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%2300eaff%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%238a2be2%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2305060a%27/%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%2760%27%20height%3D%2760%27%20rx%3D%2712%27%20fill%3D%27none%27%20stroke%3D%27url%28%23g%29%27%20stroke-opacity%3D%27.55%27%20stroke-width%3D%272%27/%3E%3Cpath%20d%3D%27M25%2017%20L48%2032%20L25%2047%20Z%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #05060a;
+      --card: rgba(16, 18, 29, .72);
+      --white: #f7f8fb;
+      --muted: #9ba3b4;
+      --cyan: #00eaff;
+      --purple: #8a2be2;
+      --pink: #ff2d9a;
+      --green: #2dff9a;
+      --gold: #ffc857;
+      --line: rgba(255,255,255,.09);
+      --radius: 22px;
+      --title: "Orbitron", sans-serif;
+      --body: "Rajdhani", sans-serif;
+      --shadow: 0 25px 80px rgba(0,0,0,.45);
+      --header-h: 4.875rem;
+      --gutter: clamp(1rem, 4vw, 2rem);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + .5rem); -webkit-text-size-adjust: 100%; }
+    body {
+      color: var(--white);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(138,43,226,.16), transparent 30%),
+        radial-gradient(circle at 88% 15%, rgba(0,234,255,.1), transparent 28%),
+        var(--bg);
+      font-family: var(--body);
+      font-size: clamp(1rem, .92rem + .25vw, 1.125rem);
+      line-height: 1.45;
+      min-width: 320px;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, svg, video { max-width: 100%; display: block; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+    .container { width: min(73.75rem, 100% - var(--gutter) * 2); margin: auto; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border: 1px solid rgba(0,234,255,.35); border-radius: 999px;
+      background: rgba(0,234,255,.06); color: var(--cyan);
+      font: 700 .75rem var(--title); letter-spacing: 1.2px; text-transform: uppercase;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed; inset: 0 0 auto; z-index: 1000;
+      background: rgba(5,6,10,.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,234,255,.14);
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
+    }
+    .nav {
+      max-width: 73.75rem; margin: auto; width: min(100% - var(--gutter) * 2, 73.75rem);
+      min-height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font: 800 1.05rem var(--title); letter-spacing: .5px; }
+    .brand svg { width: 2.1rem; height: 2.1rem; flex-shrink: 0; }
+    .voltar {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: .55rem 1.1rem; border-radius: 999px; border: 1px solid rgba(0,234,255,.4);
+      color: var(--cyan); font: 700 .85rem var(--title); white-space: nowrap;
+    }
+
+    main { padding-top: calc(var(--header-h) + 2.5rem); }
+
+    .hero { text-align: center; max-width: 46rem; margin: 0 auto 2.5rem; padding: 0 var(--gutter); }
+    .hero h1 { font: 900 clamp(1.7rem, 1.1rem + 3vw, 2.8rem) var(--title); text-transform: uppercase; line-height: 1.15; margin: 14px 0; }
+    .hero h1 span { color: var(--cyan); }
+    .hero p { color: var(--muted); font-size: 1.05rem; }
+
+    .downloads-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; padding: 0 var(--gutter); }
+    .downloads-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: .6rem 1.1rem; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(255,255,255,.03); color: var(--muted);
+      font: 700 .82rem var(--title); cursor: pointer; transition: .2s;
+    }
+    .downloads-tab[aria-selected="true"] { color: #05060a; background: var(--cyan); border-color: var(--cyan); }
+
+    .downloads-painel[hidden] { display: none; }
+    .downloads-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.1rem;
+      padding: 0 var(--gutter); max-width: 73.75rem; margin: 0 auto 4rem;
+    }
+    .downloads-vazio { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 2rem 0; }
+
+    .app-card {
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(145deg,rgba(20,22,34,.82),rgba(8,9,14,.75));
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .app-card-cabecalho {
+      width: 100%; display: flex; align-items: center; gap: .9rem;
+      padding: 1.1rem 1.25rem; background: none; border: none; color: var(--white); cursor: pointer; text-align: left;
+    }
+    .app-card-icone {
+      flex-shrink: 0; width: 2.75rem; height: 2.75rem; border-radius: 12px;
+      display: grid; place-items: center; background: rgba(0,234,255,.08); color: var(--cyan); font-size: 1.15rem;
+    }
+    .app-card-titulo { flex: 1; min-width: 0; }
+    .app-card-titulo h3 { font: 800 1rem var(--title); line-height: 1.3; }
+    .app-card-cabecalho i.fa-chevron-down { color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+    .app-card[data-aberto="true"] .fa-chevron-down { transform: rotate(180deg); }
+
+    .app-card-corpo { padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--line); }
+    .app-card-corpo[hidden] { display: none; }
+    .app-card-instrucoes { white-space: pre-wrap; color: var(--muted); font-size: .95rem; line-height: 1.55; margin: 1rem 0; }
+
+    .app-midia-bloco { margin-top: 1rem; }
+    .app-midia-titulo { font: 700 .72rem var(--title); letter-spacing: .8px; text-transform: uppercase; color: var(--cyan); margin-bottom: .6rem; }
+    .app-fotos { display: flex; gap: .6rem; overflow-x: auto; padding-bottom: .3rem; }
+    .app-fotos a { flex: 0 0 auto; width: 6.5rem; height: 6.5rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+    .app-fotos img { width: 100%; height: 100%; object-fit: cover; }
+    .app-links { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .app-links a, .app-pdf-btn {
+      display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+      padding: .5rem .9rem; border-radius: 10px; border: 1px solid rgba(0,234,255,.3);
+      color: var(--cyan); font: 600 .85rem var(--body); font-size: .9rem;
+    }
+    .app-video { width: 100%; border-radius: 10px; margin-top: .4rem; }
+
+    footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 2rem var(--gutter) calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
+
+    @media (max-width: 620px) {
+      .brand span { display: none; }
+      .downloads-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gLogo" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#00eaff"/>
+              <stop offset="1" stop-color="#8a2be2"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="14" fill="#05060a"/>
+          <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="url(#gLogo)" stroke-opacity=".55" stroke-width="2"/>
+          <path d="M25 17 L48 32 L25 47 Z" fill="url(#gLogo)"/>
+        </svg>
+        <span>ZERO UM PLAY</span>
+      </a>
+      <a class="voltar" href="index.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao site</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="eyebrow">Central de ajuda</div>
+      <h1>Downloads <span>e guias de instalação.</span></h1>
+      <p>Escolha o seu dispositivo e siga o passo a passo para instalar e configurar.</p>
+    </div>
+
+    <div class="downloads-tabs" role="tablist" aria-label="Tipo de dispositivo" id="downloadsTabs"></div>
+    <div id="downloadsPaineis"></div>
+  </main>
+
+  <footer>Zero Um Play — guias atualizados pela equipe.</footer>
+
+<script>
+  const CATEGORIAS = [
+    { id: 'smart-tv', nome: 'Smart TV', icone: 'fa-solid fa-tv' },
+    { id: 'tv-box', nome: 'TV Box', icone: 'fa-solid fa-box' },
+    { id: 'smart-tv-android', nome: 'Smart TV Android', icone: 'fa-brands fa-android' },
+    { id: 'celular-tablet', nome: 'Celular/Tablet', icone: 'fa-solid fa-mobile-screen-button' },
+    { id: 'pc-notebook', nome: 'PC/Notebook', icone: 'fa-solid fa-laptop' },
+  ];
+
+  const escapeHtml = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+
+  const tabsEl = document.getElementById('downloadsTabs');
+  const paineisEl = document.getElementById('downloadsPaineis');
+
+  tabsEl.innerHTML = CATEGORIAS.map((c, i) => `
+    <button class="downloads-tab" type="button" role="tab" id="tab-${c.id}" aria-controls="painel-${c.id}" aria-selected="${i === 0}">
+      <i class="${c.icone}"></i> ${c.nome}
+    </button>
+  `).join('');
+
+  paineisEl.innerHTML = CATEGORIAS.map((c, i) => `
+    <div class="downloads-painel" id="painel-${c.id}" role="tabpanel" aria-labelledby="tab-${c.id}" ${i === 0 ? '' : 'hidden'}>
+      <div class="downloads-grid" id="grade-${c.id}">
+        <p class="downloads-vazio">Carregando guias…</p>
+      </div>
+    </div>
+  `).join('');
+
+  tabsEl.querySelectorAll('.downloads-tab').forEach((botao, i) => {
+    botao.addEventListener('click', () => {
+      tabsEl.querySelectorAll('.downloads-tab').forEach((b) => b.setAttribute('aria-selected', 'false'));
+      botao.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.downloads-painel').forEach((p) => { p.hidden = true; });
+      document.getElementById(`painel-${CATEGORIAS[i].id}`).hidden = false;
+    });
+  });
+
+  function blocoMidias(midias) {
+    if (!midias || !midias.length) return '';
+    const fotos = midias.filter((m) => m.tipo === 'imagem');
+    const pdfs = midias.filter((m) => m.tipo === 'pdf');
+    const videos = midias.filter((m) => m.tipo === 'video');
+    const links = midias.filter((m) => m.tipo === 'link');
+
+    let html = '';
+    if (fotos.length) {
+      html += `<div class="app-midia-bloco"><div class="app-midia-titulo">Fotos</div><div class="app-fotos">
+        ${fotos.map((f) => `<a href="${escapeHtml(f.url)}" target="_blank" rel="noopener"><img src="${escapeHtml(f.url)}" alt="" loading="lazy"></a>`).join('')}
+      </div></div>`;
+    }
+    if (videos.length) {
+      html += `<div class="app-midia-bloco"><div class="app-midia-titulo">Vídeo</div>
+        ${videos.map((v) => `<video class="app-video" controls src="${escapeHtml(v.url)}"></video>`).join('')}
+      </div>`;
+    }
+    if (pdfs.length) {
+      html += `<div class="app-midia-bloco"><div class="app-midia-titulo">PDF</div>
+        ${pdfs.map((p) => `<a class="app-pdf-btn" href="${escapeHtml(p.url)}" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Abrir PDF</a>`).join('')}
+      </div>`;
+    }
+    if (links.length) {
+      html += `<div class="app-midia-bloco"><div class="app-midia-titulo">Links</div><ul class="app-links">
+        ${links.map((l) => `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${escapeHtml(l.url)}</a></li>`).join('')}
+      </ul></div>`;
+    }
+    return html;
+  }
+
+  function cartaoApp(item, idx) {
+    const cat = CATEGORIAS.find((c) => c.nome === item.dispositivo);
+    const icone = cat ? cat.icone : 'fa-solid fa-circle-question';
+    const corpoId = `corpo-${item.dispositivo}-${idx}`.replace(/\s+/g, '-');
+    return `
+      <article class="app-card" data-aberto="false">
+        <button class="app-card-cabecalho" type="button" aria-expanded="false" aria-controls="${corpoId}">
+          <span class="app-card-icone"><i class="${icone}"></i></span>
+          <span class="app-card-titulo"><h3>${escapeHtml(item.app)}</h3></span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="app-card-corpo" id="${corpoId}" hidden>
+          <p class="app-card-instrucoes">${escapeHtml(item.instrucoes)}</p>
+          ${blocoMidias(item.midias)}
+        </div>
+      </article>
+    `;
+  }
+
+  function ligarAccordion(container) {
+    container.querySelectorAll('.app-card-cabecalho').forEach((botao) => {
+      botao.addEventListener('click', () => {
+        const card = botao.closest('.app-card');
+        const corpo = document.getElementById(botao.getAttribute('aria-controls'));
+        const abrindo = corpo.hidden;
+        corpo.hidden = !abrindo;
+        botao.setAttribute('aria-expanded', String(abrindo));
+        card.dataset.aberto = String(abrindo);
+      });
+    });
+  }
+
+  async function carregarDownloads() {
+    try {
+      const res = await fetch('content/downloads.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('falha ao buscar');
+      const dados = await res.json();
+      const itens = dados.itens || [];
+
+      CATEGORIAS.forEach((c) => {
+        const doCategoria = itens.filter((it) => it.dispositivo === c.nome);
+        const grade = document.getElementById(`grade-${c.id}`);
+        if (!doCategoria.length) {
+          grade.innerHTML = '<p class="downloads-vazio">Nenhum guia publicado ainda nessa categoria.</p>';
+          return;
+        }
+        grade.innerHTML = doCategoria.map((item, idx) => cartaoApp(item, idx)).join('');
+        ligarAccordion(grade);
+      });
+    } catch (e) {
+      paineisEl.innerHTML = '<p class="downloads-vazio" style="padding:0 1rem;">Não foi possível carregar os guias agora.</p>';
+    }
+  }
+  carregarDownloads();
+</script>
+</body>
+</html>
