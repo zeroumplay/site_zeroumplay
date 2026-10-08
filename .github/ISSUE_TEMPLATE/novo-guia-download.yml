@@ -1,0 +1,48 @@
+name: "📥 Novo guia de Download"
+description: Adicionar um guia de instalação/uso de app na página Downloads
+title: "[Download] "
+labels: ["novo-download"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Em "Mídias e links": arraste fotos, PDF ou vídeo pra dentro da caixa de
+        texto abaixo (o GitHub anexa e gera o link sozinho), ou cole links
+        externos (um por linha). Esse campo é opcional.
+  - type: dropdown
+    id: dispositivo
+    attributes:
+      label: Dispositivo
+      options:
+        - "Smart TV"
+        - "TV Box"
+        - "Smart TV Android"
+        - "Celular/Tablet"
+        - "PC/Notebook"
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: Nome do aplicativo
+      placeholder: "Ex.: IPTV Smarters"
+    validations:
+      required: true
+  - type: textarea
+    id: instrucoes
+    attributes:
+      label: Instruções
+      description: Passo a passo de como baixar, instalar e configurar.
+      placeholder: |
+        1. Abra a loja de aplicativos do seu dispositivo...
+        2. Busque por "..."
+        3. Instale e abra o aplicativo...
+    validations:
+      required: true
+  - type: textarea
+    id: midias
+    attributes:
+      label: Mídias e links
+      description: Fotos, PDF, vídeo (arraste aqui) ou links — um por linha.
+    validations:
+      required: false
