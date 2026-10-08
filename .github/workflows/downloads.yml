@@ -1,0 +1,86 @@
+name: Processar novo guia de Download
+
+on:
+  issues:
+    types: [opened, reopened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  processar:
+    # só processa issues abertas pelo dono do repositório, com o título do formulário certo
+    if: |
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '[Download]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ler a issue e atualizar content/downloads.json
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = context.payload.issue.body || '';
+
+            function campo(label) {
+              const re = new RegExp('### ' + label + '\\s*\\n\\n([\\s\\S]+?)(?=\\n### |$)');
+              const m = body.match(re);
+              return m ? m[1].trim() : '';
+            }
+
+            async function comentar(msg) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: msg,
+              });
+            }
+
+            const dispositivo = campo('Dispositivo');
+            const app = campo('Nome do aplicativo');
+            const instrucoes = campo('Instruções');
+            const midiaBruto = campo('Mídias e links');
+
+            if (!dispositivo || !app || !instrucoes) {
+              await comentar('Faltou preencher Dispositivo, Nome do aplicativo ou Instruções. Edite e abra uma nova issue.');
+              return;
+            }
+
+            let urls = midiaBruto.match(/https?:\/\/[^\s)]+/g) || [];
+            urls = urls.map((u) => u.replace(/[),.]+$/, ''));
+            urls = [...new Set(urls)];
+
+            const midias = urls.map((url) => {
+              const lower = url.toLowerCase();
+              let tipo = 'link';
+              if (/\.(jpe?g|png|webp|gif)(\?|$)/.test(lower)) tipo = 'imagem';
+              else if (/\.pdf(\?|$)/.test(lower)) tipo = 'pdf';
+              else if (/\.(mp4|webm|mov)(\?|$)/.test(lower)) tipo = 'video';
+              return { tipo, url };
+            });
+
+            const entrada = { dispositivo, app, instrucoes, midias };
+            const arquivo = 'content/downloads.json';
+            const dados = JSON.parse(fs.readFileSync(arquivo, 'utf8'));
+            dados.itens.push(entrada);
+            fs.writeFileSync(arquivo, JSON.stringify(dados, null, 2) + '\n');
+
+            await comentar(`✅ Adicionado o guia de **${app}** (${dispositivo}) em \`content/downloads.json\`. Deve aparecer em downloads.html em 1-2 minutos.`);
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed',
+            });
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/downloads.json
+          git diff --cached --quiet || git commit -m "Novo guia de download via issue #${{ github.event.issue.number }}"
+          git push
