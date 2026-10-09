@@ -5,6 +5,17 @@
       "app": "Exemplo (apague este item)",
       "instrucoes": "Este é um item de exemplo para mostrar o formato. Publique um guia de verdade pela aba Issues, ou apague este bloco direto neste arquivo.",
       "midias": []
+    },
+    {
+      "dispositivo": "PC/Notebook",
+      "app": "IPTV Nator",
+      "instrucoes": "**Passo a Passo para Instalação e Configuração do IPTVnator**\n\n_- Parte 1: Download e Instalação_\n\nAcesse o link de download:\nAbra o seu navegador de preferência, digite o link [https://bit.ly/01iptvnator](url) na barra de endereços e pressione Enter.\n\nAguarde o download:\nO download do arquivo de instalação iniciará automaticamente. Aguarde a conclusão do processo.\n\nLocalize o arquivo:\nAcesse a pasta onde o arquivo foi salvo (geralmente localizada em Downloads ou Área de Trabalho).\n\nInicie a instalação:\nClique duas vezes sobre o arquivo baixado para executar o instalador.\nPermissão de segurança (Windows Defender):\n\n_Caso o Windows exiba um aviso de proteção, clique em \"Mais informações\" e, em seguida, em \"Executar assim mesmo\"._\n**> Nota: Este aviso é padrão do sistema para aplicativos de desenvolvedores independentes e o arquivo é seguro.**\n\nConclua o processo:\nAguarde a finalização da instalação. O IPTVnator será aberto automaticamente.\n\n_- Parte 2: Configuração da Playlist_\n\nAdicione uma nova lista:\nNa tela inicial do aplicativo, selecione a opção para adicionar uma nova playlist do tipo Xtream Codes.\n\nPreencha os dados de acesso:\nInsira as seguintes informações nos campos indicados:\nNome da Playlist: Zero Um Play\nURL do Servidor: (Fornecido pelo suporte)\nUsuário: (Fornecido pelo suporte)\nSenha: (Fornecido pelo suporte)\n\n_> Atenção: Caso ainda não possua seus dados de acesso (URL, Usuário e Senha), solicite-os ao nosso suporte._\n\nSincronização:\nApós preencher os campos, clique em Adicionar (ou Save) e aguarde o término do processo de sincronização dos conteúdos.\n\nAproveite o conteúdo:\nPronto! O sistema está configurado. Utilize o menu lateral esquerdo para navegar entre os canais de TV, Filmes e Séries.\n\n**Suporte ao Cliente\nWhatsApp: (84) 98890-1296\n\nZero Um Play — Seu entretenimento, do seu jeito.**",
+      "midias": [
+        {
+          "tipo": "link",
+          "url": "https://github.com/user-attachments/assets/cd082097-c31b-4ebc-8173-1980f6973a3b"
+        }
+      ]
     }
   ]
 }
