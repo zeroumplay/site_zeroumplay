@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%2300eaff%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%238a2be2%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2305060a%27/%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%2760%27%20height%3D%2760%27%20rx%3D%2712%27%20fill%3D%27none%27%20stroke%3D%27url%28%23g%29%27%20stroke-opacity%3D%27.55%27%20stroke-width%3D%272%27/%3E%3Cpath%20d%3D%27M25%2017%20L48%2032%20L25%2047%20Z%27%20fill%3D%27url%28%23g%29%27/%3E%3C/svg%3E">
 
   <style>
@@ -122,7 +123,17 @@
 
     .app-card-corpo { padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--line); }
     .app-card-corpo[hidden] { display: none; }
-    .app-card-instrucoes { white-space: pre-wrap; color: var(--muted); font-size: .95rem; line-height: 1.55; margin: 1rem 0; }
+    .app-card-instrucoes { color: var(--muted); font-size: .95rem; line-height: 1.55; margin: 1rem 0; }
+    .app-card-instrucoes p { margin: 0 0 .8rem; }
+    .app-card-instrucoes strong { color: var(--white); }
+    .app-card-instrucoes h1, .app-card-instrucoes h2, .app-card-instrucoes h3 {
+      color: var(--cyan); font-family: var(--title); margin: 1rem 0 .5rem; font-size: 1rem;
+    }
+    .app-card-instrucoes ul, .app-card-instrucoes ol { margin: 0 0 .8rem 1.3rem; }
+    .app-card-instrucoes a { color: var(--cyan); }
+    .app-card-instrucoes code {
+      background: rgba(255,255,255,.08); padding: .1rem .35rem; border-radius: 6px; font-size: .85em;
+    }
 
     .app-midia-bloco { margin-top: 1rem; }
     .app-midia-titulo { font: 700 .72rem var(--title); letter-spacing: .8px; text-transform: uppercase; color: var(--cyan); margin-bottom: .6rem; }
@@ -266,7 +277,7 @@
           <i class="fa-solid fa-chevron-down"></i>
         </button>
         <div class="app-card-corpo" id="${corpoId}" hidden>
-          <p class="app-card-instrucoes">${escapeHtml(item.instrucoes)}</p>
+          <div class="app-card-instrucoes">${marked.parse(item.instrucoes || '')}</div>
           ${blocoMidias(item.midias)}
         </div>
       </article>
