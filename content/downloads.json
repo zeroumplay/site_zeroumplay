@@ -5,6 +5,21 @@
       "app": "Exemplo (apague este item)",
       "instrucoes": "Este é um item de exemplo para mostrar o formato. Publique um guia de verdade pela aba Issues, ou apague este bloco direto neste arquivo.",
       "midias": []
+    },
+    {
+      "dispositivo": "PC/Notebook",
+      "app": "IPTV Nator",
+      "instrucoes": "Markdown\n# Passo a Passo para Instalação e Configuração do IPTVnator\n\n## Parte 1: Download e Instalação\n\n1. **Acesse o link de download:**\n   Abra o seu navegador de preferência, digite o link [bit.ly/01iptvnator](https://bit.ly/01iptvnator) na barra de endereços e pressione **Enter**.\n\n2. **Aguarde o download:**\n   O download do arquivo de instalação iniciará automaticamente. Aguarde a conclusão do processo.\n\n3. **Localize o arquivo:**\n   Acesse a pasta onde o arquivo foi salvo (geralmente localizada em **Downloads** ou **Área de Trabalho**).\n\n4. **Inicie a instalação:**\n   Clique duas vezes sobre o arquivo baixado para executar o instalador.\n\n5. **Permissão de segurança (Windows Defender):**\n   Caso o Windows exiba um aviso de proteção, clique em **\"Mais informações\"** e, em seguida, em **\"Executar assim mesmo\"**.\n   > **Nota:** Este aviso é padrão do sistema para aplicativos de desenvolvedores independentes e o arquivo é seguro.\n\n6. **Conclua o processo:**\n   Aguarde a finalização da instalação. O IPTVnator será aberto automaticamente.\n\n---\n\n## Parte 2: Configuração da Playlist\n\n1. **Adicione uma nova lista:**\n   Na tela inicial do aplicativo, selecione a opção para adicionar uma nova playlist do tipo **Xtream Codes**.\n\n2. **Preencha os dados de acesso:**\n   Insira as seguintes informações nos campos indicados:\n   - **Nome da Playlist:** `Zero Um Play`\n   - **URL do Servidor:** *(Fornecido pelo suporte)*\n   - **Usuário:** *(Fornecido pelo suporte)*\n   - **Senha:** *(Fornecido pelo suporte)*\n\n   > **Atenção:** Caso ainda não possua seus dados de acesso (URL, Usuário e Senha), solicite-os ao nosso suporte.\n\n3. **Sincronização:**\n   Após preencher os campos, clique em **Adicionar** (ou **Save**) e aguarde o término do processo de sincronização dos conteúdos.\n\n4. **Aproveite o conteúdo:**\n   Pronto! O sistema está configurado. Utilize o menu lateral esquerdo para navegar entre os canais de **TV**, **Filmes** e **Séries**.\n\n---",
+      "midias": [
+        {
+          "tipo": "pdf",
+          "url": "https://github.com/user-attachments/files/33230150/IptvNator.-.Instalacao.pdf"
+        },
+        {
+          "tipo": "link",
+          "url": "https://github.com/user-attachments/assets/bdf336ed-4e1a-42fa-855b-56d4045fa3f6"
+        }
+      ]
     }
   ]
 }
