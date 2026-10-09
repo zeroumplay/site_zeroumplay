@@ -54,14 +54,26 @@ jobs:
             urls = urls.map((u) => u.replace(/[),.]+$/, ''));
             urls = [...new Set(urls)];
 
-            const midias = urls.map((url) => {
+            async function classificar(url) {
               const lower = url.toLowerCase();
-              let tipo = 'link';
-              if (/\.(jpe?g|png|webp|gif)(\?|$)/.test(lower)) tipo = 'imagem';
-              else if (/\.pdf(\?|$)/.test(lower)) tipo = 'pdf';
-              else if (/\.(mp4|webm|mov)(\?|$)/.test(lower)) tipo = 'video';
-              return { tipo, url };
-            });
+              if (/\.(jpe?g|png|webp|gif)(\?|$)/.test(lower)) return 'imagem';
+              if (/\.pdf(\?|$)/.test(lower)) return 'pdf';
+              if (/\.(mp4|webm|mov)(\?|$)/.test(lower)) return 'video';
+              // Anexos do GitHub (user-attachments/assets/...) não têm extensão na
+              // URL: checa o tipo real perguntando ao servidor (sem baixar o arquivo).
+              try {
+                const resp = await fetch(url, { method: 'HEAD', redirect: 'follow' });
+                const ct = (resp.headers.get('content-type') || '').toLowerCase();
+                if (ct.startsWith('image/')) return 'imagem';
+                if (ct.startsWith('video/')) return 'video';
+                if (ct === 'application/pdf') return 'pdf';
+              } catch (e) { /* mantém como link */ }
+              return 'link';
+            }
+
+            const midias = await Promise.all(
+              urls.map(async (url) => ({ tipo: await classificar(url), url }))
+            );
 
             const entrada = { dispositivo, app, instrucoes, midias };
             const arquivo = 'content/downloads.json';
