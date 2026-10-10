@@ -53,6 +53,12 @@
       "nome": "Os Simpsons",
       "temporada": "1ª Temporada",
       "episodios": 13
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/ovFzkkKknAo2SbM2DfOabxRvzmy.jpg",
+      "nome": "Sobrenatural",
+      "temporada": "1ª Temporada",
+      "episodios": 22
     }
   ]
 }
