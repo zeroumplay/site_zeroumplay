@@ -41,6 +41,12 @@
       "nome": "Lanternas",
       "temporada": "1ª Temporada",
       "episodios": 8
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/aOv5c4PJmQn3sBdrGVThVIyxQpH.jpg",
+      "nome": "Berlim",
+      "temporada": "1ª Temporada",
+      "episodios": 8
     }
   ]
 }
