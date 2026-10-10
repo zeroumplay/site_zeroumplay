@@ -47,6 +47,12 @@
       "nome": "Berlim",
       "temporada": "1ª Temporada",
       "episodios": 8
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/1jGPgDDcmg3Xgs3WO8sfYfbnFoA.jpg",
+      "nome": "Os Simpsons",
+      "temporada": "1ª Temporada",
+      "episodios": 13
     }
   ]
 }
