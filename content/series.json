@@ -59,6 +59,12 @@
       "nome": "Sobrenatural",
       "temporada": "1ª Temporada",
       "episodios": 22
+    },
+    {
+      "capa": "https://image.tmdb.org/t/p/w500/aqomTRKjNZkmNEeOZnEmWrFTmKU.jpg",
+      "nome": "Game of Thrones",
+      "temporada": "1ª Temporada",
+      "episodios": 10
     }
   ]
 }
